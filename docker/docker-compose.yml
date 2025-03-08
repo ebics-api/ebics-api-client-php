@@ -6,7 +6,7 @@ services:
       - ../:/var/www/ebics-api-client-php
     tty: true
     extra_hosts:
-      - "ebics-api-$client->local:172.17.0.1"
+      - "ebics-api-client.local:172.17.0.1"
     networks:
       ebics-api-client-php-net:
         ipv4_address: 172.139.0.6

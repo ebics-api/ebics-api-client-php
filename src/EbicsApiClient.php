@@ -469,6 +469,7 @@ class EbicsApiClient
 
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 
         if ($response === false) {
             throw new RuntimeException('cURL Error: ' . curl_error($ch));
@@ -480,6 +481,10 @@ class EbicsApiClient
             throw new RuntimeException("Error: $httpCode - $response");
         }
 
-        return json_decode($response, true);
+        return match ($contentType) {
+            'application/json' => json_decode($response, true),
+            'application/gzip' => ['gzip' => $response],
+            default => throw new RuntimeException("Unexpected content type: $contentType"),
+        };
     }
 }
