@@ -84,6 +84,16 @@ class EbicsApiClient
     }
 
     /**
+     * Confirm keyring activation.
+     * @param array $data
+     * @return array
+     */
+    public function keyringConfirm(array $data): array
+    {
+        return $this->makeRequest('/api/ebics/keyring/confirm', 'POST', $data);
+    }
+
+    /**
      * Suspend keyring activation.
      * @param array $data
      * @return array
@@ -91,6 +101,16 @@ class EbicsApiClient
     public function keyringSuspend(array $data): array
     {
         return $this->makeRequest('/api/ebics/keyring/suspend', 'POST', $data);
+    }
+
+    /**
+     * Renew keyring.
+     * @param array $data
+     * @return array
+     */
+    public function keyringRenew(array $data): array
+    {
+        return $this->makeRequest('/api/ebics/keyring/renew', 'POST', $data);
     }
 
     /**
@@ -151,6 +171,26 @@ class EbicsApiClient
     public function orderTypeHpb(array $data): array
     {
         return $this->makeRequest('/api/ebics/order-types/hpb', 'POST', $data);
+    }
+
+    /**
+     * SPR Order type.
+     * @param array $data
+     * @return array
+     */
+    public function orderTypeSpr(array $data): array
+    {
+        return $this->makeRequest('/api/ebics/order-types/spr', 'POST', $data);
+    }
+
+    /**
+     * HCS Order type.
+     * @param array $data
+     * @return array
+     */
+    public function orderTypeHcs(array $data): array
+    {
+        return $this->makeRequest('/api/ebics/order-types/hcs', 'POST', $data);
     }
 
     /**

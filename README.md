@@ -53,6 +53,7 @@ Keyring with sensitive keys to perform order types methods.
 | $client->keyringInit(data)         | Initialize keyring (Only before Bank activated connection).                                |
 | $client->keyringConfirm(data)      | Confirm keyring (Only after Bank activated connection).                                    |
 | $client->keyringSuspend(data)      | Deactivate keyring (SPR order type).                                                       |
+| $client->keyringRenew(data)        | Renew keyring (HCS order type).                                                            |
 | $client->keyringLetter(data)       | Letter should be sent to Bank for Keyring activation.                                      |
 | $client->keyringChangeSecret(data) | Change secret for existing Keyring.                                                        |
 
@@ -66,6 +67,8 @@ Order type methods to download or upload files to/from the Bank.
 | $client->orderTypeIni(data) | Send to the bank public signature of electronic signature.                                   |
 | $client->orderTypeHia(data) | Send to the bank public signatures of authentication and encryption.                         |
 | $client->orderTypeHpb(data) | Download the Bank public signatures of authentication and encryption.                        |
+| $client->orderTypeSpr(data) | Upload Suspend activated Keyring.                                                            |
+| $client->orderTypeHcs(data) | Upload for renewing user certificates.                                                       |
 | $client->orderTypeHpd(data) | Download the bank server parameters.                                                         |
 | $client->orderTypeHkd(data) | Download customer`s customer and subscriber information.                                     |
 | $client->orderTypeHtd(data) | Download subscriber`s customer and subscriber information.                                   |
