@@ -84,6 +84,16 @@ class EbicsApiClient
     }
 
     /**
+     * Confirm keyring activation.
+     * @param array $data
+     * @return array
+     */
+    public function keyringConfirm(array $data): array
+    {
+        return $this->makeRequest('/api/ebics/keyring/confirm', 'POST', $data);
+    }
+
+    /**
      * Suspend keyring activation.
      * @param array $data
      * @return array
