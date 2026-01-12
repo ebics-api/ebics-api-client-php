@@ -524,6 +524,7 @@ class EbicsApiClient
         return match ($contentType) {
             'application/json' => json_decode($response, true),
             'application/gzip' => ['gzip' => $response],
+            'application/xml' => ['xml' => $response],
             default => throw new RuntimeException("Unexpected content type: $contentType"),
         };
     }
