@@ -454,30 +454,33 @@ class EbicsApiClient
     }
 
     /**
-     * List AccessLogs.
+     * List access logs.
+     * @param array $query
      * @return array
      */
-    public function accessLogList(): array
+    public function accessLogList(array $query): array
     {
-        return $this->makeRequest('/api/ebics/logs', 'GET');
+        return $this->makeRequest($this->endpointWithQuery('/api/ebics/logs', $query), 'GET');
     }
 
     /**
-     * List FetchedFiles.
+     * List scheduler files.
+     * @param array $query
      * @return array
      */
-    public function fetchedFileList(): array
+    public function schedulerFileList(array $query): array
     {
-        return $this->makeRequest('/api/ebics/fetched-files', 'GET');
+        return $this->makeRequest($this->endpointWithQuery('/api/ebics/scheduler-files', $query), 'GET');
     }
 
     /**
-     * Download FetchedFile.
+     * Download scheduler files.
+     * @param int $id
      * @return array
      */
-    public function fetchedFileDownload(int $id): array
+    public function schedulerFileDownload(int $id): array
     {
-        return $this->makeRequest("/api/ebics/fetched-files/$id/download", 'GET');
+        return $this->makeRequest("/api/ebics/scheduler-files/$id/download", 'GET');
     }
 
     /**
@@ -527,5 +530,20 @@ class EbicsApiClient
             'application/xml' => ['xml' => $response],
             default => throw new RuntimeException("Unexpected content type: $contentType"),
         };
+    }
+
+    /**
+     * Builds a full URL with optional query parameters.
+     * @param string $endpoint
+     * @param array $query
+     * @return string
+     */
+    private function endpointWithQuery(string $endpoint, array $query = []): string
+    {
+        if (empty($query)) {
+            return $endpoint;
+        }
+
+        return $endpoint . '?' . http_build_query($query);
     }
 }
