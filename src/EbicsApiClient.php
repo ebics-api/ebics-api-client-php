@@ -20,7 +20,7 @@ class EbicsApiClient
      */
     public function connectionCreate(array $data): array
     {
-        return $this->makeRequest('/api/ebics/connections/create', 'POST', $data);
+        return $this->makeRequest('/api/ebics/connections/create', 'POST', $data)->body;
     }
 
     /**
@@ -31,7 +31,7 @@ class EbicsApiClient
      */
     public function connectionUpdate(int $id, array $data): array
     {
-        return $this->makeRequest("/api/ebics/connections/$id/update", 'POST', $data);
+        return $this->makeRequest("/api/ebics/connections/$id/update", 'POST', $data)->body;
     }
 
     /**
@@ -41,14 +41,14 @@ class EbicsApiClient
      */
     public function connectionGet(int $id): array
     {
-        return $this->makeRequest("/api/ebics/connections/$id", 'GET');
+        return $this->makeRequest("/api/ebics/connections/$id", 'GET')->body;
     }
 
     /**
      * List of connections.
-     * @return array
+     * @return \stdClass
      */
-    public function connectionList(): array
+    public function connectionList(): \stdClass
     {
         return $this->makeRequest('/api/ebics/connections', 'GET');
     }
@@ -60,7 +60,7 @@ class EbicsApiClient
      */
     public function connectionDelete(int $id): array
     {
-        return $this->makeRequest("/api/ebics/connections/$id", 'DELETE');
+        return $this->makeRequest("/api/ebics/connections/$id", 'DELETE')->body;
     }
 
     /**
@@ -70,7 +70,7 @@ class EbicsApiClient
      */
     public function keyringGenerate(array $data): array
     {
-        return $this->makeRequest('/api/ebics/keyring/generate', 'POST', $data);
+        return $this->makeRequest('/api/ebics/keyring/generate', 'POST', $data)->body;
     }
 
     /**
@@ -80,7 +80,7 @@ class EbicsApiClient
      */
     public function keyringInit(array $data): array
     {
-        return $this->makeRequest('/api/ebics/keyring/init', 'POST', $data);
+        return $this->makeRequest('/api/ebics/keyring/init', 'POST', $data)->body;
     }
 
     /**
@@ -90,7 +90,7 @@ class EbicsApiClient
      */
     public function keyringConfirm(array $data): array
     {
-        return $this->makeRequest('/api/ebics/keyring/confirm', 'POST', $data);
+        return $this->makeRequest('/api/ebics/keyring/confirm', 'POST', $data)->body;
     }
 
     /**
@@ -100,7 +100,7 @@ class EbicsApiClient
      */
     public function keyringSuspend(array $data): array
     {
-        return $this->makeRequest('/api/ebics/keyring/suspend', 'POST', $data);
+        return $this->makeRequest('/api/ebics/keyring/suspend', 'POST', $data)->body;
     }
 
     /**
@@ -110,7 +110,7 @@ class EbicsApiClient
      */
     public function keyringRenew(array $data): array
     {
-        return $this->makeRequest('/api/ebics/keyring/renew', 'POST', $data);
+        return $this->makeRequest('/api/ebics/keyring/renew', 'POST', $data)->body;
     }
 
     /**
@@ -120,7 +120,7 @@ class EbicsApiClient
      */
     public function keyringLetter(array $data): array
     {
-        return $this->makeRequest('/api/ebics/keyring/letter', 'POST', $data);
+        return $this->makeRequest('/api/ebics/keyring/letter', 'POST', $data)->body;
     }
 
     /**
@@ -130,7 +130,7 @@ class EbicsApiClient
      */
     public function keyringChangeSecret(array $data): array
     {
-        return $this->makeRequest('/api/ebics/keyring/change-secret', 'POST', $data);
+        return $this->makeRequest('/api/ebics/keyring/change-secret', 'POST', $data)->body;
     }
 
     /**
@@ -140,7 +140,7 @@ class EbicsApiClient
      */
     public function orderTypeHev(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/hev', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/hev', 'POST', $data)->body;
     }
 
     /**
@@ -150,7 +150,7 @@ class EbicsApiClient
      */
     public function orderTypeIni(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/ini', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/ini', 'POST', $data)->body;
     }
 
     /**
@@ -160,7 +160,7 @@ class EbicsApiClient
      */
     public function orderTypeHia(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/hia', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/hia', 'POST', $data)->body;
     }
 
     /**
@@ -170,7 +170,7 @@ class EbicsApiClient
      */
     public function orderTypeHpb(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/hpb', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/hpb', 'POST', $data)->body;
     }
 
     /**
@@ -180,7 +180,7 @@ class EbicsApiClient
      */
     public function orderTypeSpr(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/spr', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/spr', 'POST', $data)->body;
     }
 
     /**
@@ -190,7 +190,7 @@ class EbicsApiClient
      */
     public function orderTypeHcs(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/hcs', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/hcs', 'POST', $data)->body;
     }
 
     /**
@@ -200,7 +200,7 @@ class EbicsApiClient
      */
     public function orderTypeHpd(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/hpd', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/hpd', 'POST', $data)->body;
     }
 
     /**
@@ -210,7 +210,7 @@ class EbicsApiClient
      */
     public function orderTypeHkd(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/hkd', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/hkd', 'POST', $data)->body;
     }
 
     /**
@@ -220,7 +220,7 @@ class EbicsApiClient
      */
     public function orderTypeHtd(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/htd', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/htd', 'POST', $data)->body;
     }
 
     /**
@@ -230,7 +230,7 @@ class EbicsApiClient
      */
     public function orderTypeHaa(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/haa', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/haa', 'POST', $data)->body;
     }
 
     /**
@@ -240,7 +240,7 @@ class EbicsApiClient
      */
     public function orderTypeFdl(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/fdl', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/fdl', 'POST', $data)->body;
     }
 
     /**
@@ -250,7 +250,7 @@ class EbicsApiClient
      */
     public function orderTypeFul(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/ful', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/ful', 'POST', $data)->body;
     }
 
     /**
@@ -260,7 +260,7 @@ class EbicsApiClient
      */
     public function orderTypePtk(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/ptk', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/ptk', 'POST', $data)->body;
     }
 
     /**
@@ -270,7 +270,7 @@ class EbicsApiClient
      */
     public function orderTypeVmk(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/vmk', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/vmk', 'POST', $data)->body;
     }
 
     /**
@@ -280,7 +280,7 @@ class EbicsApiClient
      */
     public function orderTypeSta(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/sta', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/sta', 'POST', $data)->body;
     }
 
     /**
@@ -290,7 +290,7 @@ class EbicsApiClient
      */
     public function orderTypec52(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/c52', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/c52', 'POST', $data)->body;
     }
 
     /**
@@ -300,7 +300,7 @@ class EbicsApiClient
      */
     public function orderTypec53(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/c53', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/c53', 'POST', $data)->body;
     }
 
     /**
@@ -310,7 +310,7 @@ class EbicsApiClient
      */
     public function orderTypec54(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/c54', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/c54', 'POST', $data)->body;
     }
 
     /**
@@ -320,7 +320,7 @@ class EbicsApiClient
      */
     public function orderTypeZ52(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/z52', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/z52', 'POST', $data)->body;
     }
 
     /**
@@ -330,7 +330,7 @@ class EbicsApiClient
      */
     public function orderTypeZ53(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/z53', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/z53', 'POST', $data)->body;
     }
 
     /**
@@ -340,7 +340,7 @@ class EbicsApiClient
      */
     public function orderTypeZ54(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/z54', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/z54', 'POST', $data)->body;
     }
 
     /**
@@ -350,7 +350,7 @@ class EbicsApiClient
      */
     public function orderTypeZsr(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/zsr', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/zsr', 'POST', $data)->body;
     }
 
     /**
@@ -360,7 +360,7 @@ class EbicsApiClient
      */
     public function orderTypeXek(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/xek', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/xek', 'POST', $data)->body;
     }
 
     /**
@@ -370,7 +370,7 @@ class EbicsApiClient
      */
     public function orderTypeCct(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/cct', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/cct', 'POST', $data)->body;
     }
 
     /**
@@ -380,7 +380,7 @@ class EbicsApiClient
      */
     public function orderTypeCip(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/cip', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/cip', 'POST', $data)->body;
     }
 
     /**
@@ -390,7 +390,7 @@ class EbicsApiClient
      */
     public function orderTypeXe2(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/xe2', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/xe2', 'POST', $data)->body;
     }
 
     /**
@@ -400,7 +400,7 @@ class EbicsApiClient
      */
     public function orderTypeXe3(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/xe3', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/xe3', 'POST', $data)->body;
     }
 
     /**
@@ -410,7 +410,7 @@ class EbicsApiClient
      */
     public function orderTypeYct(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/yct', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/yct', 'POST', $data)->body;
     }
 
     /**
@@ -420,7 +420,7 @@ class EbicsApiClient
      */
     public function orderTypeCdb(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/cdb', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/cdb', 'POST', $data)->body;
     }
 
     /**
@@ -430,7 +430,7 @@ class EbicsApiClient
      */
     public function orderTypeCdd(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/cdd', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/cdd', 'POST', $data)->body;
     }
 
     /**
@@ -440,7 +440,7 @@ class EbicsApiClient
      */
     public function orderTypeBtd(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/btd', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/btd', 'POST', $data)->body;
     }
 
     /**
@@ -450,15 +450,15 @@ class EbicsApiClient
      */
     public function orderTypeBtu(array $data): array
     {
-        return $this->makeRequest('/api/ebics/order-types/btu', 'POST', $data);
+        return $this->makeRequest('/api/ebics/order-types/btu', 'POST', $data)->body;
     }
 
     /**
      * List access logs.
      * @param array $query
-     * @return array
+     * @return \stdClass
      */
-    public function accessLogList(array $query): array
+    public function accessLogList(array $query): \stdClass
     {
         return $this->makeRequest($this->endpointWithQuery('/api/ebics/logs', $query), 'GET');
     }
@@ -466,9 +466,9 @@ class EbicsApiClient
     /**
      * List scheduler files.
      * @param array $query
-     * @return array
+     * @return \stdClass
      */
-    public function schedulerFileList(array $query): array
+    public function schedulerFileList(array $query): \stdClass
     {
         return $this->makeRequest($this->endpointWithQuery('/api/ebics/scheduler-files', $query), 'GET');
     }
@@ -480,7 +480,7 @@ class EbicsApiClient
      */
     public function schedulerFileDownload(int $id): array
     {
-        return $this->makeRequest("/api/ebics/scheduler-files/$id/download", 'GET');
+        return $this->makeRequest("/api/ebics/scheduler-files/$id/download", 'GET')->body;
     }
 
     /**
@@ -488,9 +488,9 @@ class EbicsApiClient
      * @param string $endpoint
      * @param string $method
      * @param array|null $body
-     * @return array
+     * @return \StdClass object{headers: array, body: array}
      */
-    private function makeRequest(string $endpoint, string $method, ?array $body = null): array
+    private function makeRequest(string $endpoint, string $method, ?array $body = null): \StdClass
     {
         $url = $this->apiHost . $endpoint;
 
@@ -504,6 +504,7 @@ class EbicsApiClient
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HEADER, true);
 
         if ($body) {
             $formData = http_build_query($body);
@@ -513,6 +514,9 @@ class EbicsApiClient
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+        $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $responseHeadersStr = substr($response, 0, $headerSize);
+        $responseBody = substr($response, $headerSize);
 
         if ($response === false) {
             throw new RuntimeException('cURL Error: ' . curl_error($ch));
@@ -520,16 +524,27 @@ class EbicsApiClient
 
         curl_close($ch);
 
+        $parsedHeaders = [];
+        foreach (explode("\r\n", $responseHeadersStr) as $line) {
+            if (str_contains($line, ':')) {
+                [$key, $value] = explode(':', $line, 2);
+                $parsedHeaders[strtolower(trim($key))] = trim($value);
+            }
+        }
+
         if ($httpCode < 200 || $httpCode >= 300) {
             throw new RuntimeException("Error: $httpCode - $response");
         }
 
-        return match ($contentType) {
-            'application/json' => json_decode($response, true),
-            'application/gzip' => ['gzip' => $response],
-            'application/xml' => ['xml' => $response],
-            default => throw new RuntimeException("Unexpected content type: $contentType"),
-        };
+        return (object)[
+            'headers' => $parsedHeaders,
+            'body' => match ($contentType) {
+                'application/json' => json_decode($responseBody, true),
+                'application/gzip' => ['gzip' => $responseBody],
+                'application/xml' => ['xml' => $responseBody],
+                default => throw new RuntimeException("Unexpected content type: $contentType"),
+            }
+        ];
     }
 
     /**
