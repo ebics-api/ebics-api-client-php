@@ -134,6 +134,16 @@ class EbicsApiClient
     }
 
     /**
+     * Get keyring order types.
+     * @param array $data
+     * @return array
+     */
+    public function keyringOrderTypes(array $data): array
+    {
+        return $this->makeRequest('/api/ebics/keyring/order-types', 'POST', $data)->body;
+    }
+
+    /**
      * HEV Order type.
      * @param array $data
      * @return array
