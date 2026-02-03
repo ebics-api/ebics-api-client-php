@@ -244,6 +244,16 @@ class EbicsApiClient
     }
 
     /**
+     * HAC Order type.
+     * @param array $data
+     * @return array
+     */
+    public function orderTypeHac(array $data): array
+    {
+        return $this->makeRequest('/api/ebics/order-types/hac', 'POST', $data)->body;
+    }
+
+    /**
      * FDL Order type.
      * @param array $data
      * @return array
