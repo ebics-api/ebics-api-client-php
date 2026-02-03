@@ -527,8 +527,15 @@ class EbicsApiClient
         curl_setopt($ch, CURLOPT_HEADER, true);
 
         if ($body) {
-            $formData = http_build_query($body);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $formData);
+            if (!empty($body['file_data']) && is_resource($body['file_data'])) {
+                $data = $body;
+                $filename = stream_get_meta_data($body['file_data'])['uri'] ?? 'file';
+                $data['file_data'] = curl_file_create($filename, 'application/octet-stream', 'file_data');
+            } else {
+                $data = !empty($body['file_data']) ? $body : http_build_query($body);
+            }
+
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
 
         $response = curl_exec($ch);
@@ -539,11 +546,12 @@ class EbicsApiClient
         $responseBody = substr($response, $headerSize);
 
         if ($response === false) {
-            throw new RuntimeException('cURL Error: ' . curl_error($ch));
+            $error = curl_error($ch);
+            curl_close($ch);
+            throw new RuntimeException('cURL Error: ' . $error);
         }
 
         curl_close($ch);
-
         $parsedHeaders = [];
         foreach (explode("\r\n", $responseHeadersStr) as $line) {
             if (str_contains($line, ':')) {
@@ -558,10 +566,13 @@ class EbicsApiClient
 
         return (object)[
             'headers' => $parsedHeaders,
-            'body' => match ($contentType) {
-                'application/json' => json_decode($responseBody, true),
-                'application/gzip' => ['gzip' => $responseBody],
-                'application/xml' => ['xml' => $responseBody],
+            'body' => match (true) {
+                str_contains($contentType, 'application/json') => json_decode($responseBody, true),
+                str_contains($contentType, 'application/gzip') => ['gzip' => $responseBody],
+                str_contains($contentType, 'application/xml') => ['xml' => $responseBody],
+                str_contains($contentType, 'text/plain') => ['txt' => $responseBody],
+                str_contains($contentType, 'application/pdf') => ['pdf' => $responseBody],
+                empty($contentType) && $httpCode === 204 => [],
                 default => throw new RuntimeException("Unexpected content type: $contentType"),
             }
         ];
